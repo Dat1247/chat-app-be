@@ -30,7 +30,7 @@ const server = app.listen(port || process.env.PORT, () => {
 
 const io = socket(server, {
 	cors: {
-		origin: "https://chat-app-hqd.netlify.app",
+		origin: "http://localhost:3000",
 		credentials: true,
 	},
 });
@@ -42,10 +42,8 @@ io.on("connection", (socket) => {
 	socket.on("add-user", (userId) => {
 		onlineUsers.set(userId, socket.id);
 	});
-
 	socket.on("send-msg", (data) => {
 		const sendUserSocket = onlineUsers.get(data.to);
-
 		if (sendUserSocket) {
 			socket.to(sendUserSocket).emit("msg-receive", data.message);
 		}
