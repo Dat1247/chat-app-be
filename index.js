@@ -30,7 +30,7 @@ const server = app.listen(port || process.env.PORT, () => {
 
 const io = socket(server, {
 	cors: {
-		origin: "https://hqd-chat-app.netlify.app",
+		origin: "https://chat-app-hqd.netlify.app",
 		credentials: true,
 	},
 });
